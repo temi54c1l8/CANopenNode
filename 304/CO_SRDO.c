@@ -185,7 +185,7 @@ static CO_ReturnError_t SRDO_configMap(CO_SRDO_t* SRDO,
         }
         return CO_ERROR_OD_PARAMETERS;
     }
-    if (mappedObjectsCount > CO_SRDO_MAX_SIZE) {
+    if ( (mappedObjectsCount) > (CO_SRDO_MAX_SIZE*2)) {
         //*erroneousMap = 1;
         return CO_ERROR_NO;
     }
@@ -440,7 +440,7 @@ static ODR_t OD_write_SRDO_mappingParam(OD_stream_t *stream, const void *buf,
                            OD_size_t count, OD_size_t *countWritten)
 {
     if ((stream == NULL) || (buf == NULL) || (countWritten == NULL) || 
-        (stream->subIndex > CO_SRDO_MAX_MAPPED_ENTRIES)
+        (stream->subIndex > (CO_SRDO_MAX_MAPPED_ENTRIES*2))
     ) {
         return ODR_DEV_INCOMPAT;
     }
